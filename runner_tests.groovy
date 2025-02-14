@@ -2,6 +2,8 @@ timeout(time: 10, unit: 'MINUTES') {
 
     node('gradle') {
 
+        checkout scm
+        
         utils = load './utils.groovy'
         utils.prepare_yaml_config()
 
