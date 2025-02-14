@@ -1,6 +1,6 @@
 def prepare_yaml_config() {
 
-    def config = readYaml text: $CONFIG
+    def config = readYaml text: env.CONFIG
 
     config.each { k, v ->  
         env[k] = v.toString()
