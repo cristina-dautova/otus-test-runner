@@ -2,6 +2,7 @@ def prepare_yaml_config() {
 
     if(!env.CONFIG){
         error "CONFIG environment variable is not set."
+        env.CONFIG = '{}'
     }
     
     def config = readYaml text: env.CONFIG
