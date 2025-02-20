@@ -9,9 +9,9 @@ timeout(time: 10, unit: 'MINUTES') {
         // }
         // utils.prepare_yaml_config()
 
-        parameters {
-            string(name: 'YAML_CONFIG', defaultValue: '', description: 'YAML configuration content')
-        }
+        // parameters {
+        //     string(name: 'YAML_CONFIG', defaultValue: '', description: 'YAML configuration content')
+        // }
 
         def config = [:]
         
