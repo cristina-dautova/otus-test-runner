@@ -18,13 +18,15 @@ timeout(time: 10, unit: 'MINUTES') {
         stage('Read YAML') {
             script {      
                 config = readYaml text: params.YAML_CONFIG
-                echo "TESTS: ${config.TESTS}"
+                //echo "TESTS: ${config.TESTS}"
             }
         }
 
         def jobs = [:]
 
-        for (def test_type: env.TESTS) {
+        def test_types = config.TESTS ?: []
+
+        for (def test_type in test_types) {
 
             jobs[test_type] = node('gradle') {
 
