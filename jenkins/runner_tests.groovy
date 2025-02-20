@@ -61,7 +61,7 @@ timeout(time: 10, unit: 'MINUTES') {
             }
         }
 
-        parallel jobs
+        //parallel jobs
 
     }
 }
