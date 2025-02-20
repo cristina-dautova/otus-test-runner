@@ -18,6 +18,7 @@ timeout(time: 10, unit: 'MINUTES') {
         stage('Read YAML') {
             script {      
                 config = readYaml text: params.YAML_CONFIG
+                echo "Using CONFIG: ${config}"
                 //echo "TESTS: ${config.TESTS}"
             }
         }
@@ -32,6 +33,18 @@ timeout(time: 10, unit: 'MINUTES') {
 
                 stage("Running $test_type tests") {
 
+                        def refspecValue = env.REFSPEC ?: ""
+                        def configValue = env.CONFIG ?: "default-config"
+
+                        echo "Running tests for: ${test_type}"
+                        echo "Using CONFIG: ${configValue}"
+                        echo "Using REFSPEC: ${refspecValue}"
+
+                        def parameters = [
+                            string(name: 'REFSPEC', value: refspecValue),
+                            string(name: 'CONFIG', value: configValue)
+                        ]
+                    
                     def parameters = [
                             "$REFSPEC",
                             "$CONFIG"
