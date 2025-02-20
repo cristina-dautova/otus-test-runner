@@ -45,10 +45,10 @@ timeout(time: 10, unit: 'MINUTES') {
                             string(name: 'CONFIG', value: configValue)
                         ]
                     
-                    def parameters = [
-                            "$REFSPEC",
-                            "$CONFIG"
-                    ]
+                    // def parameters = [
+                    //         "$REFSPEC",
+                    //         "$CONFIG"
+                    // ]
 
                     build (job: "$test_type tests", parameters: parameters, propagate: false, wait: true)
                 }
