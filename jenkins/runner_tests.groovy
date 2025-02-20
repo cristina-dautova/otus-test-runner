@@ -10,7 +10,6 @@ timeout(time: 10, unit: 'MINUTES') {
             script {      
                 config = readYaml text: params.YAML_CONFIG
                 echo "Using CONFIG: ${config}"
-                //echo "TESTS: ${config.TESTS}"
             }
         }
 
