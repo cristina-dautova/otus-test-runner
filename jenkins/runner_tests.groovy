@@ -4,10 +4,23 @@ timeout(time: 10, unit: 'MINUTES') {
 
         checkout scm
 
-        dir('jenkins') {  
-            utils = load './utils.groovy'
+        // dir('jenkins') {  
+        //     utils = load './utils.groovy'
+        // }
+        // utils.prepare_yaml_config()
+
+        parameters {
+            string(name: 'YAML_CONFIG', defaultValue: '', description: 'YAML configuration content')
         }
-        utils.prepare_yaml_config()
+
+        def config = [:]
+        
+        stage('Read YAML') {
+            script {      
+                config = readYaml text: params.YAML_CONFIG
+                echo "Jenkins URL: ${config}"
+            }
+        }
 
         def jobs = [:]
 
