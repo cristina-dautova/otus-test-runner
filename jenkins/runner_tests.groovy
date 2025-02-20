@@ -51,7 +51,12 @@ timeout(time: 10, unit: 'MINUTES') {
                     // ]
 
                     //build (job: "$test_type tests", parameters: parameters, propagate: false, wait: true)
-                    build(job: test_type, parameters: parameters, propagate: false, wait: true)
+                    //build(job: test_type, parameters: parameters, propagate: false, wait: true)
+
+                    parallel (
+                        "api-autotests": { -> build(job: "api-autotests", propagate: false, wait: true) },
+                        "ui-autotests": { -> build(job: "ui-autotests", propagate: false, wait: true) }
+                    )
                 }
             }
         }
