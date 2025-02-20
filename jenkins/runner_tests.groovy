@@ -18,7 +18,7 @@ timeout(time: 10, unit: 'MINUTES') {
         stage('Read YAML') {
             script {      
                 config = readYaml text: params.YAML_CONFIG
-                echo "Jenkins URL: ${config}"
+                echo "TESTS: ${config.TESTS}"
             }
         }
 
