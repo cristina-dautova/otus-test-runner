@@ -4,15 +4,6 @@ timeout(time: 10, unit: 'MINUTES') {
 
         checkout scm
 
-        // dir('jenkins') {  
-        //     utils = load './utils.groovy'
-        // }
-        // utils.prepare_yaml_config()
-
-        // parameters {
-        //     string(name: 'YAML_CONFIG', defaultValue: '', description: 'YAML configuration content')
-        // }
-
         def config = [:]
         
         stage('Read YAML') {
@@ -45,14 +36,6 @@ timeout(time: 10, unit: 'MINUTES') {
                             string(name: 'CONFIG', value: configValue)
                         ]
                     
-                    // def parameters = [
-                    //         "$REFSPEC",
-                    //         "$CONFIG"
-                    // ]
-
-                    //build (job: "$test_type tests", parameters: parameters, propagate: false, wait: true)
-                    //build(job: test_type, parameters: parameters, propagate: false, wait: true)
-
                     parallel (
                         "api-autotests": { -> build(job: "api-autotests", propagate: false, wait: true) },
                         "ui-autotests": { -> build(job: "ui-autotests", propagate: false, wait: true) }
@@ -60,8 +43,5 @@ timeout(time: 10, unit: 'MINUTES') {
                 }
             }
         }
-
-        //parallel jobs
-
     }
 }
