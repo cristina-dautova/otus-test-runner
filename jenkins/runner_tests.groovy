@@ -50,7 +50,8 @@ timeout(time: 10, unit: 'MINUTES') {
                     //         "$CONFIG"
                     // ]
 
-                    build (job: "$test_type tests", parameters: parameters, propagate: false, wait: true)
+                    //build (job: "$test_type tests", parameters: parameters, propagate: false, wait: true)
+                    build(job: test_type, parameters: parameters, propagate: false, wait: true)
                 }
             }
         }
